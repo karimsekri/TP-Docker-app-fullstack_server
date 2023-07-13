@@ -3,7 +3,7 @@ function ditribuerVoteAleatoirement(nombreDeVote : number, nombreDeCondidat : nu
 
         for (let index = 0; index < nombreDeCondidat; index++) {
 
-           tableauVote[index] = Math.random()*(nombreDeVote-0) + 0;
+           tableauVote[index] = Math.random()*(nombreDeVote);
            tableauVote[index] = Math.round(tableauVote[index]);
 
            nombreDeVote = nombreDeVote - tableauVote[index] ;
@@ -22,7 +22,7 @@ function trouverLeCandidatGagnant(vote : number[], candidats : string[]) {
    // console.log("indexVoteMax",vote.indexOf(voteMax));
     //console.log(candidat);
 
-    return {nomDuCandidat ,indexVoteMax };
+    return {nomDuCandidat ,indexVoteMax ,voteMax };
 }
 
 
@@ -36,7 +36,7 @@ export function exo5(){
 
     let vote = [];
     let candidat_gagnant, deuxieme_candidat_gagnant;
-   // let tableau_candidat_sans_gagnant  ;
+   
    
 
     vote = ditribuerVoteAleatoirement(NOMBRE_DE_VOTE, NOMBRE_DE_CONDIDAT);
@@ -64,12 +64,17 @@ export function exo5(){
     console.log("                    ------------Question 2 --------------------------------                  ");
     console.log();
 
-    let tableau_des_gagnants = [candidat_gagnant,deuxieme_candidat_gagnant]
+    let tableau_des_gagnants = [candidat_gagnant,deuxieme_candidat_gagnant];
 
     if (candidat_gagnant.nomDuCandidat === "lepeigne" || deuxieme_candidat_gagnant.nomDuCandidat === "lepeigne" ) {
         
         //recuperer le résultat de lepeigne
+        console.log(tableau_des_gagnants);
 
+    }
+    else
+    {
+        console.log("lepeigne n'a pas gagné");
     }
    
 
