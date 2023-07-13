@@ -4,6 +4,7 @@ exports.exo3 = void 0;
 //fonction doubler un tableau 
 function doublerTableau(tableau) {
     let tableauBis = [];
+    // TODO Remplacer par un MAP
     for (let index = 0; index < tableau.length; index++) {
         tableauBis[index] = tableau[index] * 2;
     }

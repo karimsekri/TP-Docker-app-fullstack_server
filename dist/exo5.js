@@ -4,9 +4,12 @@ exports.exo5 = void 0;
 function ditribuerVoteAleatoirement(nombreDeVote, nombreDeCondidat) {
     let tableauVote = [];
     for (let index = 0; index < nombreDeCondidat; index++) {
-        tableauVote[index] = Math.random() * (nombreDeVote);
-        tableauVote[index] = Math.round(tableauVote[index]);
-        nombreDeVote = nombreDeVote - tableauVote[index];
+        tableauVote.push(0);
+    }
+    console.log(tableauVote);
+    for (let index = 0; index < nombreDeVote; index++) {
+        let randomPosition = Math.floor(Math.random() * (nombreDeCondidat));
+        tableauVote[randomPosition]++;
     }
     return tableauVote;
 }
@@ -23,33 +26,29 @@ function trouverLeCandidatGagnant(vote, candidats) {
 function exo5() {
     console.log("-----------------Exercice n°4---------------------------");
     const CANDIDATS = ["lepeigne", "melangeons", "macreau", "varousselle", "paicvaissrelle", "poutoutout", "hidalgogo"];
-    const NOMBRE_DE_CONDIDAT = 7;
+    const NOMBRE_DE_CONDIDAT = CANDIDATS.length;
     const NOMBRE_DE_VOTE = 1000;
-    let vote = [];
-    let candidat_gagnant, deuxieme_candidat_gagnant;
-    vote = ditribuerVoteAleatoirement(NOMBRE_DE_VOTE, NOMBRE_DE_CONDIDAT);
-    candidat_gagnant = trouverLeCandidatGagnant(vote, CANDIDATS);
-    // const MAP_TABLEAU_VOTE = vote.map(
-    //     vote.splice(candidat_gagnant.indexVoteMax,1);
-    // );
+    let votes;
+    let candidat_gagnant;
+    let deuxieme_candidat_gagnant;
+    votes = ditribuerVoteAleatoirement(NOMBRE_DE_VOTE, NOMBRE_DE_CONDIDAT);
     console.log("Liste des candidats: ", CANDIDATS);
-    console.log("Resultat du vote : ", vote);
+    console.log("Resultat du vote : ", votes);
+    candidat_gagnant = trouverLeCandidatGagnant(votes, CANDIDATS);
     console.log("le nom du candidat qui a le plus de votes est : ", candidat_gagnant);
-    vote.splice(candidat_gagnant.indexVoteMax, 1);
-    console.log("la liste des candidats qui passent au deuxième tour sont :  ", vote);
-    CANDIDATS.splice(candidat_gagnant.indexVoteMax, 1);
-    deuxieme_candidat_gagnant = trouverLeCandidatGagnant(vote, CANDIDATS);
+    let votes_deuxieme_tour = votes.filter((valeur, index) => votes[index] != candidat_gagnant.voteMax);
+    console.log("votes_deuxieme_tour : ", votes_deuxieme_tour);
+    let candidats_deuxieme_tour = CANDIDATS.filter((nom, index) => votes[index] != candidat_gagnant.voteMax);
+    console.log("la liste des candidats qui passent au deuxième tour sont :  ", candidats_deuxieme_tour);
+    deuxieme_candidat_gagnant = trouverLeCandidatGagnant(votes_deuxieme_tour, candidats_deuxieme_tour);
     console.log("nom du candidat n°2 :  ", deuxieme_candidat_gagnant);
     console.log();
     console.log("                    ------------Question 2 --------------------------------                  ");
     console.log();
     let tableau_des_gagnants = [candidat_gagnant, deuxieme_candidat_gagnant];
-    if (candidat_gagnant.nomDuCandidat === "lepeigne" || deuxieme_candidat_gagnant.nomDuCandidat === "lepeigne") {
-        //recuperer le résultat de lepeigne
-        console.log(tableau_des_gagnants);
-    }
-    else {
-        console.log("lepeigne n'a pas gagné");
-    }
+    console.log("les candidats qui passent au 2eme tour  sont : ");
+    tableau_des_gagnants.forEach(element => { console.log(element); });
+    // const LEPEIGNE = tableau_des_gagnants.find(element=> element.nomDuCandidat === "lepeigne");
+    // console.log("LEPEIGNE : ", LEPEIGNE);
 }
 exports.exo5 = exo5;

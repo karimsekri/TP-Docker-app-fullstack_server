@@ -8,6 +8,7 @@ function exo2() {
     //const
     const pi = Math.PI;
     function superieurPI(x, y) {
+        //TODO Utiliser les ternaire
         if (x > pi) {
             console.log("a est superieur à PI");
         }
