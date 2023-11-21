@@ -19,9 +19,10 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 const myport = process.env.PORT ? parseInt(process.env.PORT) : 3000;
-app.get("/hello", (_, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get("/hello/:name", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const name = req.params.name;
     //res.send renvoi du text    
-    res.send("Hello");
+    res.send("Hello " + name);
 }));
 app.get("/server/time", (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     const time = Date.now();

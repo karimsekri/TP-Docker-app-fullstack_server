@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 
 const myport = process.env.PORT ? parseInt(process.env.PORT as string) : 3000;
 
-app.get("/hello", async (_, res) => {    
-    
+app.get("/hello/:name", async (req, res) => {    
+    const name = req.params.name
     //res.send renvoi du text    
-    res.send("Hello");   
+    res.send("Hello " + name);   
 });
 
 app.get("/server/time", async (_, res) => {    
